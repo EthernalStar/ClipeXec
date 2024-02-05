@@ -1,0 +1,366 @@
+unit Unit1;
+
+{$mode objfpc}{$H+}
+
+interface
+
+uses
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, ClipBrd, Process, Types;
+
+type
+
+  { TForm1 }
+
+  TMyThread = class(TThread)
+  protected
+    procedure Execute; override;
+  end;
+
+  TForm1 = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    CheckBox1: TCheckBox;
+    CheckBox2: TCheckBox;
+    CheckBox3: TCheckBox;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Image1: TImage;
+    Image2: TImage;
+    Image3: TImage;
+    Image4: TImage;
+    Image5: TImage;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    ListBox1: TListBox;
+    OpenDialog1: TOpenDialog;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    SaveDialog1: TSaveDialog;
+    SelectDirectoryDialog1: TSelectDirectoryDialog;
+    Timer1: TTimer;
+    ToggleBox1: TToggleBox;
+    TrayIcon1: TTrayIcon;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
+    procedure CheckBox3Change(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure FormCreate(Sender: TObject);
+    procedure Image2Click(Sender: TObject);
+    procedure Image3Click(Sender: TObject);
+    procedure Image4Click(Sender: TObject);
+    procedure Image5Click(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure ToggleBox1Change(Sender: TObject);
+    procedure ExecuteCommand(Command: String; ClipText: String);
+    procedure TrayIcon1Click(Sender: TObject);
+    procedure ListBox1DrawItem(Control: TWinControl; Index: Integer; ARect: TRect; State: TOwnerDrawState);
+    procedure TimerThreadConnection;
+  private
+
+  public
+
+  end;
+
+var
+  Form1: TForm1;
+  NewText: String = '';  //Save the Current ClipBoard Text to a Variable
+  WorkingDir: String = '';  //Default Working Directory
+
+const License = 'ClipeXec is licensed under the' + LineEnding +
+                'GNU General Public License v3.0.' + LineEnding +
+                'You should have received a copy of the ' + LineEnding +
+                'GNU General Public License' + LineEnding +
+                'along with this program.' + LineEnding +
+                'If not, see https://www.gnu.org/licenses/';  //The String used for Displaying the License Information
+
+const Changelog = 'Version 1.0.0: Initial Release.';  //The String used for Displaying the latest Changelog
+
+implementation
+
+{$R *.lfm}
+
+{ TForm1 }
+
+procedure TMyThread.Execute;  //Override the Thread Execution with my call to the Command Execution
+begin
+
+   Form1.ExecuteCommand(Form1.Edit1.Text + NewText + Form1.Edit2.Text, Unit1.NewText);  //Execute Command with the ClipBoard String and the Edit Fields
+
+end;
+
+procedure TForm1.TimerThreadConnection;  //Connect the Thred running with the Clipboard Detection in the Timer because the Timer should not create new threads in its Loop
+var
+  Thread: TMyThread;  //Define the Thread
+begin
+
+  Thread := TMyThread.Create(True);  //Create with auto free
+
+  Thread.Start;  //Execute
+
+  Thread.FreeOnTerminate := True;  //Free after Termination
+
+end;
+
+procedure TForm1.ListBox1DrawItem(Control: TWinControl; Index: Integer; ARect: TRect; State: TOwnerDrawState);  //Function to custom color the ListBox output based on Success
+begin
+
+  ListBox1.Canvas.FillRect(ARect);  //Fill the Rect Structure
+
+  if Length(ListBox1.Items[Index]) > 0 then begin
+
+  if ListBox1.Items[Index][1] = #10 then begin  //Detect the 'O' for SUCCESS
+
+    ListBox1.Canvas.Brush.Color := clgreen;  //Make it Green for OK
+    ListBox1.Canvas.TextOut(ARect.Left, ARect.Top, RightStr(ListBox1.Items[Index], Length(ListBox1.Items[Index]) - 1));  //Draw Everything and fix the displayed String
+
+  end
+  else if ListBox1.Items[Index][1] = #13 then begin
+
+    ListBox1.Canvas.Brush.Color := clred;  //Make it Rd for FAIL otherwise
+    ListBox1.Canvas.TextOut(ARect.Left, ARect.Top, RightStr(ListBox1.Items[Index], Length(ListBox1.Items[Index]) - 1));  //Draw Everything and fix the displayed String
+
+  end
+  else begin  //Ignore otherwise (for Debug and List import)
+
+    ListBox1.Canvas.TextOut(ARect.Left, ARect.Top, ListBox1.Items[Index]);  //Draw Everything and fix the displayed String
+
+  end;
+
+  end;
+
+end;
+
+procedure TForm1.ExecuteCommand(Command: String; ClipText: String);  //Custom Command execution procedure through cmd
+begin
+
+  with TProcess.Create(nil) do begin  //Create a new Process to run Cmd
+
+    CurrentDirectory := WorkingDir;  //Set current Directory
+
+    Executable := 'cmd.exe';  //Set cmd.exe as executable
+    Parameters.Add('/c');  //the "/c" Parameter allows us to append a new command
+    Parameters.Add(Command);  //Add the real command to be executed as parameter
+
+    if NOT CheckBox2.Checked then begin  //Check for Pipe Setting
+
+      if NOT CheckBox1.Checked then begin  //Chek for CLI Setting
+
+        Options := [poWaitOnExit, poNoConsole];  //Do set the options to get the result and wait for it and also hide the console
+
+      end
+      else begin
+
+        Options := [poWaitOnExit];  //Do set the options to get the result and wait for it and also hide the console
+
+      end;
+
+    end
+    else begin
+
+      if NOT CheckBox1.Checked then begin  //Chek for CLI Setting
+
+        Options := [poUsePipes, poWaitOnExit, poNoConsole];  //Do set the options to get the result and wait for it and also hide the console
+
+      end
+      else begin
+
+        Options := [poUsePipes, poWaitOnExit];  //Do set the options to get the result and wait for it and also hide the console
+
+      end;
+
+    end;
+
+    Execute;  //Execute the Process 
+
+    if ExitStatus = 0 then begin  //Check for Exit Status
+
+       ListBox1.Items.Add(#10 + ClipText);  //Add an 'O' for SUCCESS (will be removed later)
+
+    end
+    else begin
+
+       ListBox1.Items.Add(#13 + ClipText);  //Add an 'X' for FAIL (will be removed later)
+
+    end;
+
+    Free;  //Free the Process
+
+   end;
+
+end;
+
+procedure TForm1.TrayIcon1Click(Sender: TObject);  //Click on TrayIcon
+begin
+
+  Form1.Visible := NOT(Form1.Visible);  //Switch Form Visibility
+
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);  //Choose a new default Working Directory
+begin
+
+  if SelectDirectoryDialog1.Execute then begin  //Check for Execution
+
+    WorkingDir := SelectDirectoryDialog1.FileName;  //Set Working Directory
+
+  end;
+
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);  //Changelog Button
+begin
+
+  ShowMessage(Changelog);  //Show Changelog Information
+
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);  //License Button
+begin
+
+  ShowMessage(License);  //Show License Information
+
+end;
+
+procedure TForm1.CheckBox3Change(Sender: TObject);  //Topmost Setting
+begin
+
+  if CheckBox3.Checked then begin  //Check for Setting
+
+    Form1.FormStyle := fsSystemStayOnTop;  //Enable Topmost Status
+
+  end
+  else begin
+
+    Form1.FormStyle := fsNormal;  //Disable Topmost Status
+
+  end;
+
+end;
+
+procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: Boolean);  //Events before Closure
+begin
+
+  TrayIcon1.Visible := False;  //Hide TrayIcon early to prevent it from not diasppearing
+
+end;
+
+procedure TForm1.FormCreate(Sender: TObject);  //Startup Events
+begin
+
+  ClipBoard.AsText := '';  //Reset the Clipboard Contents to prevent accidental Execution
+  WorkingDir := GetEnvironmentVariable('USERPROFILE') + '\Desktop';  //Set User Desktop as current Directory
+  TrayIcon1.Show;  //Show Tray Icon
+
+end;
+
+procedure TForm1.Image2Click(Sender: TObject);  //Import Listbox
+begin
+
+  if OpenDialog1.Execute then begin  //Check for Execution
+
+    ListBox1.Items.LoadFromFile(OpenDialog1.FileName);  //Load Listbox Content from File
+    Label3.Caption := IntToStr(ListBox1.Items.Count);  //Show Number of ListBox Items
+
+  end;
+
+end;
+
+procedure TForm1.Image3Click(Sender: TObject);  //Delete Single ListBox Item
+begin
+
+  if ListBox1.ItemIndex >= 0 then begin  //Check for Item Index
+
+    ListBox1.Items.Delete(ListBox1.ItemIndex);  //Delete Selected Item
+    Label3.Caption := IntToStr(ListBox1.Items.Count);  //Show Number of ListBox Items
+
+  end;
+
+end;
+
+procedure TForm1.Image4Click(Sender: TObject);  //Export ListBox Contents
+var
+  TempBox: TListBox = nil;  //Temporary ListBox for Saving
+  i: Integer = 0;  //Temporary Loop Variable
+begin
+
+  if SaveDialog1.Execute then begin //Check for Execution
+
+    TempBox := TListBox.Create(Nil);  //Create
+
+    for i := 0 to ListBox1.Items.Count - 1 do begin  //Iterate through Listbox
+
+      if (Length(ListBox1.Items[i]) > 0) AND ( (ListBox1.Items[i][1] = #10) OR (ListBox1.Items[i][1] = #13) ) then begin  //Check  if Item is not empty and has a Status Character
+
+        TempBox.Items.Add(RightStr(ListBox1.Items[i], Length(ListBox1.Items[i]) - 1)); //Save while cutting the first Placeholder Character (used for Process Status)
+
+      end
+      else begin
+
+        TempBox.Items.Add(ListBox1.Items[i]); //Just copy from ListBox1
+
+      end;
+
+    end;
+
+    TempBox.Items.SaveToFile(SaveDialog1.FileName);  //Save ListBox Contents
+
+    TempBox.Free;  //Free ListBox
+
+  end;
+
+end;
+
+procedure TForm1.Image5Click(Sender: TObject);  //Clear ListBox Items
+begin
+
+  ListBox1.Clear;  //Clear the ListBox
+  Label3.Caption := IntToStr(ListBox1.Items.Count);  //Show Number of ListBox Items
+
+end;
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+begin
+
+  Label3.Caption := IntToStr(ListBox1.Items.Count);  //Show Number of ListBox Items
+
+  if Clipboard.HasFormat(CF_TEXT) then begin  //Check if ClipBoard Contents are Text
+
+    if NOT (Clipboard.AsText = NewText) AND NOT (Clipboard.AsText = '') then begin  //Check for old or empty String
+
+      NewText := ClipBoard.AsText;  //Set New Text
+
+      TimerThreadConnection;  //Connect to Thread Execution
+
+    end;
+
+  end;
+
+end;
+
+procedure TForm1.ToggleBox1Change(Sender: TObject);  //ToggleBox Click
+begin
+
+  ClipBoard.AsText := '';  //Reset the Clipboard Contents to prevent accidental Execution
+  Timer1.Enabled := ToggleBox1.Checked;  //Start or Stop Timer
+
+  if ToggleBox1.Checked then begin
+
+    ToggleBox1.Caption := 'Clear Clipboard and stop';
+
+  end
+  else begin
+
+    ToggleBox1.Caption := 'Clear Clipboard and start';
+    NewText := '';  //Reset Text Variable
+
+  end;
+
+
+
+end;
+
+end.
+
