@@ -27,8 +27,8 @@ The (String) Label stands for the Clipboard Text wich will be combined with the 
 
 **Please be aware that the Prefix, (String) and Suffix will be appended directly without Spaces.**
 
-The first Edit Box will be appended before the (String) like so: "Something.exe " + (String) (Don't forget the Space!).  
-The second Edit Box will be appended after the (String) like so: (String) + " >> File.txt" (Don't forget the Space!).
+The first Edit Box will be appended before the (String) like so: "Something.exe " + (String) (**Don't forget the Space!**).  
+The second Edit Box will be appended after the (String) like so: (String) + " >> File.txt" (**Don't forget the Space!**).
 
 The default Working Directory will be your Desktop but can be changed with the **Set Working Directory** Button.
 Any Application or Script called by ClipeXec should be in the current Working Directory or your PATH variable.  
@@ -46,10 +46,11 @@ After execution a command the Clipboard Content will be added to the White ListB
 
 On the top right corner the amount of processes Clipboard contents is shown.
 There are 4 Symbols next to the ListBox on the right Side:
-The **Red X** is used to clear the currently selected Entry in the ListBox.
-The **Symbol below the Red X** clears the ListBox completely.
-The **Green Arrow** can be used to export the Contents of the ListBox to a Textfile.
-The **Purple Arrow** can be used to import a Textfile to be displayed in the ListBox.
+
+1. The **Red X** is used to clear the currently selected Entry in the ListBox.
+2. The **Symbol below the Red X** clears the ListBox completely.
+3. The **Green Arrow** can be used to export the Contents of the ListBox to a Textfile.
+4. The **Purple Arrow** can be used to import a Textfile to be displayed in the ListBox.
 
 The **Changelog** and **License** Buttons show you the current Changelog and License of the Application.
 
