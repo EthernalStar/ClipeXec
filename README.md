@@ -1,7 +1,9 @@
 # ![Logo](./Icon.png?raw=true) ClipeXec
 
 **ClipeXec** is a Tool wich executes given Command once the content of the Clipboard changes.
-It incorporates the Clipboard Text content directly to the command.
+
+It incorporates the Clipboard Text content directly to the Command.
+
 The Tool was tested with Windows 10 but should also work with Windows 11.
 
 
