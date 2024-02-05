@@ -7,27 +7,29 @@ The Tool was tested with Windows 10 but should also work with Windows 11.
 
 ## Documentation
 
-**Please Read the Instructions with care to avoid breaking something**
-**<span style="color:red">This Tool will execute any Command and makes the Contents of the Clipboard Part of this.</span>**
-**<span style="color:red">Please be aware that there are many Ways to use this incorrectly.</span>**
+**Please Read the Instructions with care to avoid breaking something as this Tool will execute any Command and makes the Contents of the Clipboard Part of this.**
+**Please be aware that there are many Ways to use this incorrectly.**
 
 **Also the Tool may be flagged as a false positive by your System.**
+
 **If you are still unsure please check and compile the Source Code yourself or try it in a VM first!**
 
-If you want to hide the Application Window just click the Tray-Icon on the Taskbar.
+If you want to hide the Application Window just click on the Tray-Icon on the Taskbar.
 
 ### Main Page
 
 ![Main Page Screenshot](./Images/ClipeXec%2001.png?raw=true)
 
-Before you do anything you will need to set your Command in the two Edit Boxes at the bottom.
-The (String) Lebel stands for the Textstring inside the Clipboard wich will be combined with the Commands.
+Before you do anything you will need to set your Command in the two Edit Boxes at the bottom.  
+The (String) Label stands for the Clipboard Text wich will be combined with the Commands.
+
 **Please be aware that the Prefix, (String) and Suffix will be appended directly without Spaces.**
-The first Edit Box will be appended before the (String) like so: "Something.exe " + (String) (Don't forget the Space!).
+
+The first Edit Box will be appended before the (String) like so: "Something.exe " + (String) (Don't forget the Space!).  
 The second Edit Box will be appended after the (String) like so: (String) + " >> File.txt" (Don't forget the Space!).
 
-By default the Working directory will be your Desktop but this can be changed with the **Set Working Directory** Button.
-Any Applications or Scripts called by this Application should be in the current Working Directory or PATH.
+By default the Working Directory will be your Desktop but this can be changed with the **Set Working Directory** Button.  
+Any Applications or Scripts called by this Application should be in the current Working Directory or PATH.  
 
 To start the execution of the Commands everytime the Clipboard changes to need to Toggle the **Clear Clipboard and start** Button.
 To stop just press the Button again. **This will NOT cancel any running Scripts or Status Updates.**
