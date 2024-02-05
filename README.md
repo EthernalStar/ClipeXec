@@ -38,7 +38,7 @@ To stop just press the Button again. **This will NOT cancel any running Scripts 
 
 The three Checkboxes on the right are for different Options:
 1. **Show CLI** toggles the visibility of the CMD shell Window for every Command.
-2. **Use Pipes** Rule of Thumb: More Output on CLI -> Disable Pipes (May impact Status Reporting) or use silent/quiet Flags.
+2. **Use Pipes** verbose Output on CLI -> Disable Pipes (May impact Status Reporting) or use silent/quiet Flags.
 3. **Topmost** just toggles the Topmost Status of the Window.
 
 After execution a command the Clipboard Content will be added to the White ListBox and either be colored green on exit code 0 or red otherwise.
