@@ -20,9 +20,7 @@ If you want to hide the Application Window just click the Tray-Icon on the Taskb
 
 ![Main Page Screenshot](https://github.com/EthernalStar/ClipeXec/blob/main/Images/ClipeXec%2001.png?raw=true)  
 
-The **Color** Box allows you to pick a preconfigured color for the Overlay by clicking the different Boxes.  
-You could also set a **custom Color** by clicking the Button and choosing one with the Color Picker.  
-The Button **Set Random Color** just sets a random choosen Color for the Overlay.  
+WIP.  
   
 ## Use Cases
 
