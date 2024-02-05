@@ -8,7 +8,7 @@ The Tool was tested with Windows 10 but should also work with Windows 11.
 ## Documentation
 
 **Please Read the Instructions with care to avoid breaking something**  
-**<span style="color:red">This Tool will execute any Command and makes the Contents of the Clipboard Ppart of this.</span>.**  
+**<span style="color:red">This Tool will execute any Command and makes the Contents of the Clipboard Part of this.</span>.**  
 **<span style="color:red">Please be aware that there are many Ways to use this incorrectly.</span>.**  
   
 **Also the Tool may be flagged as a false positive by your System.**
