@@ -31,10 +31,10 @@ The first Edit Box will be appended before the (String) like so: "Something.exe 
 The second Edit Box will be appended after the (String) like so: (String) + " >> File.txt" (**Don't forget the Space!**).
 
 The default Working Directory will be your Desktop but can be changed with the **Set Working Directory** Button.
-Any Application or Script called by ClipeXec should be in the current Working Directory or your PATH variable.  
+Any Application or Script called by ClipeXec should be in the current Working Directory or your PATH variable.
 
 To start the execution of the Commands everytime the Clipboard changes to need to Toggle the **Clear Clipboard and start** Button.
-To stop just press the Button again. **This will NOT cancel any running Scripts or Status Updates.**  
+To stop just press the Button again. **This will NOT cancel any running Scripts or Status Updates.**
 
 The three Checkboxes on the right are for different Options:
 1. **Show CLI** toggles the visibility of the CMD shell Window for every Command.
@@ -44,7 +44,7 @@ The three Checkboxes on the right are for different Options:
 After execution a command the Clipboard Content will be added to the White ListBox and either be colored green on exit code 0 or red otherwise.
 **If the Script is hanging/waiting on input or in an endless loop nothing will be reported. Please optimize your Scripts/Commands before!**
 
-On the top right corner the amount of processes Clipboard contents is shown.
+On the top right corner the amount of processes Clipboard contents is shown.  
 There are 4 Symbols next to the ListBox on the right Side:
 
 1. The **Red X** is used to clear the currently selected Entry in the ListBox.
