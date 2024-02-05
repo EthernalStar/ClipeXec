@@ -38,7 +38,7 @@ To stop just press the Button again. **This will NOT cancel any running Scripts 
 
 The three Checkboxes on the right are for different Options:
 1. **Show CLI** toggles the visibility of the CMD shell Window for every Command.
-2. **Use Pipes** toggles an Internal state for Pipe Usage of the Execution Logic. Rule of Thumb: More Output on CLI -> Disable Pipes (May impact Status Reporting) or use silent/quiet Flags.
+2. **Use Pipes** Rule of Thumb: More Output on CLI -> Disable Pipes (May impact Status Reporting) or use silent/quiet Flags.
 3. **Topmost** just toggles the Topmost Status of the Window.
 
 After execution a command the Clipboard Content will be added to the White ListBox and either be colored green on exit code 0 or red otherwise.
@@ -57,10 +57,10 @@ The **Changelog** and **License** Buttons show you the current Changelog and Lic
 
 Here are some situations where I use this Tool:
 
-1. Downloading Image Galleries by just copying the URL with [gallery-dl](https://github.com/mikf/gallery-dl) e.g: gallery-dl + (String).
-2. Downloading Web Videos by just copying the URL with [yt-dlp](https://github.com/yt-dlp/yt-dlp) e.g: yt-dlp + (String).
-3. Automaticaly add Clipboard Text as Lines to a Textfile. e.g: echo + (String) + >> File.txt.
-4. Using Bash Scripts for Web Scraping by Utilizing WSL and Bash in Windows e.g: bash -c "./script.sh " + (String) + "".
+1. Downloading Image Galleries by just copying the URL with [gallery-dl](https://github.com/mikf/gallery-dl).
+2. Downloading Web Videos by just copying the URL with [yt-dlp](https://github.com/yt-dlp/yt-dlp).
+3. Automaticaly add Clipboard Text as Lines to a Textfile.
+4. Using Bash Scripts for Web Scraping by Utilizing WSL and Bash in Windows.
 
 ## Building
 
