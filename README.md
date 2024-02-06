@@ -62,7 +62,7 @@ There are 4 Symbols next to the ListBox on the right Side:
 
 ![About Page Screenshot](./Images/ClipeXec%2002.png?raw=true)
 
-By clicking the large Icon on the Left you will be introduced to the About Page where useful Information about the **License** or recent **Chngelog** can be found.
+By clicking the large Icon on the Left you will be introduced to the About Page where useful Information about the **License** or recent **Changelog** can be found.
 There are also links to my Repositories on Github or Codeberg where you could always find the latest Version.
 If you have questions please don't hesitate to contact me over [E-Mail](mailto:NZSoft@Protonmail.com) or create an Issue on the Project Page.
 
@@ -70,10 +70,10 @@ If you have questions please don't hesitate to contact me over [E-Mail](mailto:N
 
 Here are some situations where I use this Tool:
 
-1. Downloading Image Galleries by just copying the URL with [gallery-dl](https://github.com/mikf/gallery-dl).
-2. Downloading Web Videos by just copying the URL with [yt-dlp](https://github.com/yt-dlp/yt-dlp).
-3. Automaticaly add Clipboard Text as Lines to a Textfile.
-4. Using Bash Scripts for Web Scraping by Utilizing WSL and Bash in Windows.
+* Downloading Image Galleries by just copying the URL with [gallery-dl](https://github.com/mikf/gallery-dl).
+* Downloading Web Videos by just copying the URL with [yt-dlp](https://github.com/yt-dlp/yt-dlp).
+* Automaticaly add Clipboard Text as Lines to a Textfile.
+* Using Bash Scripts for Web Scraping by Utilizing WSL and Bash in Windows.
 
 ## Building
 
