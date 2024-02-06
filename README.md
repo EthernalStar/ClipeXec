@@ -30,18 +30,24 @@ The (String) Label stands for the Clipboard Text wich will be combined with the 
 The first Edit Box will be appended before the (String) like so: "Something.exe " + (String) (**Don't forget the Space!**).  
 The second Edit Box will be appended after the (String) like so: (String) + " >> File.txt" (**Don't forget the Space!**).
 
-The default Working Directory will be your Desktop but can be changed with the **Set Working Directory** Button.
+The default Working Directory will be your **Desktop** but can be changed with the **Set Working Directory** Button.
 Any Application or Script called by ClipeXec should be in the current Working Directory or your PATH variable.
 
 To start the execution of the Commands everytime the Clipboard changes to need to Toggle the **Clear Clipboard and start** Button.
 To stop just press the Button again. **This will NOT cancel any running Scripts or Status Updates.**
 
-The three Checkboxes on the right are for different Options:
+The Checkboxes on the right are for different Options:
 1. **Show CLI** toggles the visibility of the CMD shell Window for every Command.
 2. **Use Pipes** verbose Output on CLI -> Disable Pipes (May impact Status Reporting) or use silent/quiet Flags.
 3. **Topmost** just toggles the Topmost Status of the Window.
+4. **Auto Clear Clipboard** clears the Clipboars the moment the command was send to be executed (As of v1.0.1).
+5. **Command Confirmation** displays a confirmation Messagebox every time a command will be executed (As of v1.0.1).  
+
+You will also see a Display Label named **Currently Running:** introduced in v1.0.1 wich displays the Amount of Tasks currently still running.
+If there are any Tasks still running and you try to close the Application it first will ask for confirmation.
 
 After execution a command the Clipboard Content will be added to the White ListBox and either be colored green on exit code 0 or red otherwise.
+As of v1.0.1 you can also double click an Entry in the ListBox to copy it. **This will execute the command again if not disabled before!**
 **If the Script is hanging/waiting on input or in an endless loop nothing will be reported. Please optimize your Scripts/Commands before!**
 
 On the top right corner the amount of processes Clipboard contents is shown.  
@@ -52,7 +58,13 @@ There are 4 Symbols next to the ListBox on the right Side:
 3. The **Green Arrow** can be used to export the Contents of the ListBox to a Textfile.
 4. The **Purple Arrow** can be used to import a Textfile to be displayed in the ListBox.
 
-The **Changelog** and **License** Buttons show you the current Changelog and License of the Application.
+### About Page
+
+![About Page Screenshot](./Images/ClipeXec%2002.png?raw=true)
+
+By clicking the large Icon on the Left you will be introduced to the About Page where useful Information about the **License** or recent **Chngelog** can be found.
+There are also links to my Repositories on Github or Codeberg where you could always find the latest Version.
+If you have questions please don't hesitate to contact me over [E-Mail](mailto:NZSoft@Protonmail.com) or create an Issue on the Project Page.
 
 ## Use Cases
 
@@ -72,18 +84,19 @@ To do this just open the .lpr file and you should be able to edit and compile th
 
 ## Issues
 
-Some Script/Command combinations will freeze or report a wrong exit status.
+* Some Script/Command combinations will freeze or report a wrong exit status.
 To fix this you will need to uncheck the "Use Pipes" Setting. This may cause other Commands to not be recognized correctly.
 Also you should use all available quiet/silent flags in your Scripts/Commands to reduce CLI output, wich increases success rates.
 
 ## Planned Features
 
-Currently there are no planned Features.
+* Currently there are no planned Features.
 
 ## Changelog
 
-Version 1.0.0: Initial Release.
+* Version 1.0.0: Initial Release.  
+* Version 1.0.1: Added horizontal ScrollBar, Copy Feature, CMD Display, Clipboard Clear Mode, About Page, Running Tasks Display, Confirmation Dialogs and many visual Improvements.
 
 ## License
 
-GNU General Public License v3.0. See [LICENSE](./LICENSE) for further Information.
+* GNU General Public License v3.0. See [LICENSE](./LICENSE) for further Information.
