@@ -44,8 +44,21 @@ var
                   'along with this program.' + LineEnding +
                   'If not, see https://www.gnu.org/licenses/';  //The String used for Displaying the License Information
 
-  const CHANGELOG = 'Version 1.0.0: Initial Release.' + LineEnding +
-                    'Version 1.0.1: Added horizontal ScrollBar, Copy Feature, CMD Display, Clipboard Clear Mode, About Page, Running Tasks Display, Confirmation Dialogs and many visual Improvements.';  //The String used for Displaying the latest Changelog
+
+
+
+
+  const CHANGELOG = 'Version 1.0.0:' + LineEnding +
+                    ' * Initial Release.' + LineEnding +
+                    'Version 1.0.1:' + LineEnding +
+                    ' * Added horizontal ScrollBar for large commands.' + LineEnding +
+                    ' * Added Copy Feature for single Clipboard Entries.' + LineEnding +
+                    ' * Added CMD Display Option with Confirmation upon Execution.' + LineEnding +
+                    ' * Added Clipboard Clear Mode wich clears the Clipboard directly after Execution.' + LineEnding +
+                    ' * Added About Page to better display Developer and Application Information.' + LineEnding +
+                    ' * Added Running Tasks Display wich display the amount of still running Tasks.' + LineEnding +
+                    ' * Added Confirmation Dialog for closing if Tasks are still running.' + LineEnding +
+                    ' * Added many visual Improvements to the GUI.';  //The String used for Displaying the latest Changelog
   const REPO_CODEBERG = 'https://codeberg.org/EthernalStar/ClipeXec';  //Rpository Url for Codeberg
   const REPO_GITHUB = 'https://github.com/EthernalStar/ClipeXec';  //Rpository Url for Github
   const APP_TITLE = 'ClipeXec';  //Title of the Application

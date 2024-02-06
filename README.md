@@ -98,11 +98,11 @@ Also you should use all available quiet/silent flags in your Scripts/Commands to
   * Initial Release.  
 * Version 1.0.1:
   * Added horizontal ScrollBar for large commands.
-  * Added Copy Feature for single Entries by doubleclicking the ListBox Entry.
+  * Added Copy Feature for single Clipboard Entries.
   * Added CMD Display Option with Confirmation upon Execution.
-  * Added Clipboard Clear Mode wich clears the Clipboard directly after Execution.
-  * Added About Page to better display Developer and Application Information.
-  * Added Running Tasks Display wich display the amount of still running Tasks.
+  * Added Clear Option for Clipboard after Execution.
+  * Added About Page to display additional Information.
+  * Added Display for amount of still running Tasks.
   * Added Confirmation Dialog for closing if Tasks are still running.
   * Added many visual Improvements to the GUI.
 
