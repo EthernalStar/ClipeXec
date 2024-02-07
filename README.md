@@ -29,7 +29,7 @@ The (String) Label stands for the Clipboard Text wich will be combined with the 
 The first Edit Box will be appended before the (String) like so: "Something.exe " + (String) (**Don't forget the Space!**).  
 The second Edit Box will be appended after the (String) like so: (String) + " >> File.txt" (**Don't forget the Space!**).
 
-The default Working Directory will be your **Desktop** but can be changed with the **Set Working Directory** Button.
+The default Working Directory will be your **Application Directory** where you put the ClipeXec Binary but this can be changed with the **Set Working Directory** Button.
 Any Application or Script called by ClipeXec should be in the current Working Directory or your PATH variable.
 
 To start the execution of the Commands everytime the Clipboard changes to need to Toggle the **Clear Clipboard and start** Button.
