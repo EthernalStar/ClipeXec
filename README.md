@@ -1,6 +1,6 @@
 # ![Logo](./Icon.png?raw=true) ClipeXec
 
-**ClipeXec** is a Tool wich executes given Command once the content of the Clipboard changes.
+**ClipeXec** is a Tool wich executes a given Command once the content of the Clipboard changes.
 
 It incorporates the Clipboard Text content directly to the Command.
 
