@@ -244,7 +244,7 @@ begin
 
     if FileExists(ExtractFilePath(Application.ExeName) + 'ClipeXec.ini') then begin  //Check if Settings where allready created
 
-      if MessageDlg('Unsetting this Option will reset the current Settings.' + LineEnding + 'Do you want to continue?', mtWarning, [mbYes, mbNo], 0) = mrYes then begin  //Ask if user wnats to delete current settings
+      if MessageDlg('Unsetting this Option will delete the Settings File.' + LineEnding + 'Do you want to continue?', mtWarning, [mbYes, mbNo], 0) = mrYes then begin  //Ask if user wnats to delete current settings
 
         DeleteFile(ExtractFilePath(Application.ExeName) + 'ClipeXec.ini');  //Delete the Settings File
 
@@ -301,7 +301,7 @@ begin
 
   end;
 
-  if CheckBox6.Checked then begin
+  if (CheckBox6.Checked = True) AND (OnClose = True) then begin
 
     Settings := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'ClipeXec.ini');  //Create Settings File
 
@@ -342,12 +342,12 @@ begin
 
     try
 
-      CheckBox1.Checked := StrToBool(Settings.ReadString('Settings', 'Show CLI', ''));
-      CheckBox2.Checked := StrToBool(Settings.ReadString('Settings', 'Use Pipes', '0'));
-      CheckBox3.Checked := StrToBool(Settings.ReadString('Settings', 'Topmost', ''));
-      CheckBox4.Checked := StrToBool(Settings.ReadString('Settings', 'Auto Clear Clipboard', ''));
-      CheckBox5.Checked := StrToBool(Settings.ReadString('Settings', 'Command Confirmation', ''));
-      CheckBox6.Checked := StrToBool(Settings.ReadString('Settings', 'Auto Save/Load Settings', ''));
+      CheckBox1.Checked := StrToBool(Settings.ReadString('Settings', 'Show CLI', '0'));
+      CheckBox2.Checked := StrToBool(Settings.ReadString('Settings', 'Use Pipes', '-1'));
+      CheckBox3.Checked := StrToBool(Settings.ReadString('Settings', 'Topmost', '0'));
+      CheckBox4.Checked := StrToBool(Settings.ReadString('Settings', 'Auto Clear Clipboard', '0'));
+      CheckBox5.Checked := StrToBool(Settings.ReadString('Settings', 'Command Confirmation', '0'));
+      CheckBox6.Checked := StrToBool(Settings.ReadString('Settings', 'Auto Save/Load Settings', '-1'));
       Edit1.Text := Settings.ReadString('Settings', 'Prefix CMD', '');
       Edit2.Text := Settings.ReadString('Settings', 'Suffix CMD', '');
       WorkingDir := Settings.ReadString('Settings', 'Working Directory', ExtractFilePath(Application.ExeName));

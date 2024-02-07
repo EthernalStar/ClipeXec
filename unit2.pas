@@ -64,11 +64,13 @@ var
                     ' * Added Display for Working Directory in Window Title.' + LineEnding +  
                     ' * Changed GUI Layout.' + LineEnding +
                     ' * Changed default Working Directory to Application Directory.' + LineEnding +
-                    ' * Minor Bug and Typo fixes.';  //The String used for Displaying the latest Changelog
+                    ' * Minor Bug and Typo fixes.' + LineEnding +
+                    'Version 1.0.3:' + LineEnding +
+                    ' * Minor Bug Fixes.';  //The String used for Displaying the latest Changelog
   const REPO_CODEBERG = 'https://codeberg.org/EthernalStar/ClipeXec';  //Rpository Url for Codeberg
   const REPO_GITHUB = 'https://github.com/EthernalStar/ClipeXec';  //Rpository Url for Github
   const APP_TITLE = 'ClipeXec';  //Title of the Application
-  const APP_VERSION = '1.0.2';  //Version of the Application
+  const APP_VERSION = '1.0.3';  //Version of the Application
   const DEV_NAME = 'EthernalStar';  //Developer Name
   const DEV_EMAIL = 'NZSoft@Protonmail.com';  //Developer Email
 

@@ -63,7 +63,7 @@ var
                     ' * Added Feature to save Settings.' + LineEnding +
                     ' * Added Display for Working Directory in Window Title.' + LineEnding +  
                     ' * Changed GUI Layout.' + LineEnding +
-                    ' * Changed default Working Directory to Application Directory..' + LineEnding +
+                    ' * Changed default Working Directory to Application Directory.' + LineEnding +
                     ' * Minor Bug and Typo fixes.';  //The String used for Displaying the latest Changelog
   const REPO_CODEBERG = 'https://codeberg.org/EthernalStar/ClipeXec';  //Rpository Url for Codeberg
   const REPO_GITHUB = 'https://github.com/EthernalStar/ClipeXec';  //Rpository Url for Github

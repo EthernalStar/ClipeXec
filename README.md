@@ -112,6 +112,8 @@ Also you should use all available quiet/silent flags in your Scripts/Commands to
   * Changed GUI Layout.
   * Changed default Working Directory to Application Directory.
   * Minor Bug and Typo fixes.
+* Version 1.0.3:
+  * Minor Bug Fixes.
 
 ## License
 
