@@ -157,7 +157,7 @@ object Form2: TForm2
     Cursor = crHandPoint
     Left = 134
     Height = 17
-    Hint = 'Write me an E-mail with Questions or Feedback.'
+    Hint = 'Write me an E-Mail with Questions or Feedback.'
     Top = 33
     Width = 220
     Alignment = taCenter

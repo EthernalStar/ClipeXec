@@ -40,8 +40,9 @@ The Checkboxes on the right are for different Options:
 1. **Show CLI** toggles the visibility of the CMD shell Window for every Command.
 2. **Use Pipes** verbose Output on CLI -> Disable Pipes (May impact Status Reporting) or use silent/quiet Flags.
 3. **Topmost** just toggles the Topmost Status of the Window.
-4. **Auto Clear Clipboard** clears the Clipboars the moment the command was send to be executed (As of v1.0.1).
-5. **Command Confirmation** displays a confirmation Messagebox every time a command will be executed (As of v1.0.1).  
+4. **Auto Clear Clipboard** clears the Clipboard the moment the command was send to be executed (As of v1.0.1).
+5. **Command Confirmation** displays a confirmation Messagebox every time a command will be executed (As of v1.0.1).
+6. **Auto Save/Load Settings** toggles the ability to save all Settings in an ini File (As of v1.0.2).  
 
 You will also see a Display Label named **Currently Running:** introduced in v1.0.1 wich displays the Amount of Tasks currently still running.
 If there are any Tasks still running and you try to close the Application it first will ask for confirmation.
@@ -105,6 +106,12 @@ Also you should use all available quiet/silent flags in your Scripts/Commands to
   * Added Display for amount of still running Tasks.
   * Added Confirmation Dialog for closing if Tasks are still running.
   * Added many visual Improvements to the GUI.
+* Version 1.0.2:
+  * Added Feature to save Settings.
+  * Added Display for Working Directory in Window Title.
+  * Changed GUI Layout.
+  * Changed default Working Directory to Application Directory.
+  * Minor Bug and Typo fixes.
 
 ## License
 

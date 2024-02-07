@@ -5,7 +5,7 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, ClipBrd, Process, Types, Unit2;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, ClipBrd, IniFiles, Process, Types, Unit2;
 
 type
 
@@ -23,6 +23,7 @@ type
     CheckBox3: TCheckBox;
     CheckBox4: TCheckBox;
     CheckBox5: TCheckBox;
+    CheckBox6: TCheckBox;
     Edit1: TEdit;
     Edit2: TEdit;
     Image1: TImage;
@@ -44,6 +45,7 @@ type
     TrayIcon1: TTrayIcon;
     procedure Button2Click(Sender: TObject);
     procedure CheckBox3Change(Sender: TObject);
+    procedure CheckBox6Change(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure FormCreate(Sender: TObject);
     procedure Image1Click(Sender: TObject);
@@ -69,6 +71,7 @@ var
   NewText: String = '';  //Save the Current ClipBoard Text to a Variable
   WorkingDir: String = '';  //Default Working Directory
   RunningTasks: Integer = 0;  //Amount of currently running Tasks
+  Settings: TIniFile;  //Settings ini File
 
 implementation
 
@@ -212,6 +215,7 @@ begin
   if SelectDirectoryDialog1.Execute then begin  //Check for Execution
 
     WorkingDir := SelectDirectoryDialog1.FileName;  //Set Working Directory
+    Form1.Caption := 'ClipeXec - ' + WorkingDir;  //Set Working Directory Name to Title
 
   end;
 
@@ -233,13 +237,38 @@ begin
 
 end;
 
+procedure TForm1.CheckBox6Change(Sender: TObject);  //Auto Save/Load Settings Checkbox Change
+begin
+
+  if NOT CheckBox6.Checked then begin  //Check for disabled Saving Settings
+
+    if FileExists(ExtractFilePath(Application.ExeName) + 'ClipeXec.ini') then begin  //Check if Settings where allready created
+
+      if MessageDlg('Unsetting this Option will delete the Settings File.' + LineEnding + 'Do you want to continue?', mtWarning, [mbYes, mbNo], 0) = mrYes then begin  //Ask if user wnats to delete current settings
+
+        DeleteFile(ExtractFilePath(Application.ExeName) + 'ClipeXec.ini');  //Delete the Settings File
+
+      end
+      else begin
+
+        CheckBox6.Checked := True;  //Check Checkbox again
+
+      end;
+
+    end;
+
+  end;
+
+end;
+
 procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: Boolean);  //Events before Closure
 begin
 
   if RunningTasks = 1 then begin  //Check for running Tasks
 
     if MessageDlg('There is still ' + IntToStr(RunningTasks) + ' Task running in the background.' + LineEnding + 'Do you really want to close the Application?', mtWarning, [mbYes, mbNo], 0) = mrYes then begin
-
+      
+      TrayIcon1.Visible := False;  //Hide TrayIcon early to prevent it from not diasppearing
       CanClose := True;  //Allow Closing
 
     end
@@ -253,7 +282,8 @@ begin
   else if RunningTasks > 1 then begin  //Check for running Tasks
 
     if MessageDlg('There are still ' + IntToStr(RunningTasks) + ' Tasks running in the background.' + LineEnding + 'Do you really want to close the Application?', mtWarning, [mbYes, mbNo], 0) = mrYes then begin
-
+      
+      TrayIcon1.Visible := False;  //Hide TrayIcon early to prevent it from not diasppearing
       CanClose := True;  //Allow Closing
 
     end
@@ -265,12 +295,37 @@ begin
 
   end
   else begin
-
+    
+    TrayIcon1.Visible := False;  //Hide TrayIcon early to prevent it from not diasppearing
     CanCLose := True; //Allow Closing
 
   end;
 
-  TrayIcon1.Visible := False;  //Hide TrayIcon early to prevent it from not diasppearing
+  if CheckBox6.Checked then begin
+
+    Settings := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'ClipeXec.ini');  //Create Settings File
+
+    try
+
+      Settings.WriteString('Settings', 'Show CLI', BoolToStr(CheckBox1.Checked));
+      Settings.WriteString('Settings', 'Use Pipes', BoolToStr(CheckBox2.Checked));
+      Settings.WriteString('Settings', 'Topmost', BoolToStr(CheckBox3.Checked));
+      Settings.WriteString('Settings', 'Auto Clear Clipboard', BoolToStr(CheckBox4.Checked));
+      Settings.WriteString('Settings', 'Command Confirmation', BoolToStr(CheckBox5.Checked));
+      Settings.WriteString('Settings', 'Auto Save/Load Settings', BoolToStr(CheckBox6.Checked));
+      Settings.WriteString('Settings', 'Prefix CMD', '"' + Edit1.Text + '"');
+      Settings.WriteString('Settings', 'Suffix CMD', '"' + Edit2.Text + '"');
+      Settings.WriteString('Settings', 'Working Directory', '"' + WorkingDir + '"');
+
+    finally
+
+      Settings.Free;  //Free Settings File
+
+    end;
+
+  end;
+
+  
 
 end;
 
@@ -278,8 +333,34 @@ procedure TForm1.FormCreate(Sender: TObject);  //Startup Events
 begin
 
   ClipBoard.AsText := '';  //Reset the Clipboard Contents to prevent accidental Execution
-  WorkingDir := GetEnvironmentVariable('USERPROFILE') + '\Desktop';  //Set User Desktop as current Directory
+  WorkingDir := ExtractFilePath(Application.ExeName);  //Set Application Folder as current Directory
   TrayIcon1.Show;  //Show Tray Icon
+
+  if FileExists(ExtractFilePath(Application.ExeName) + 'ClipeXec.ini') then begin  //Check if Settings File is Present
+
+    Settings := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'ClipeXec.ini');
+
+    try
+
+      CheckBox1.Checked := StrToBool(Settings.ReadString('Settings', 'Show CLI', ''));
+      CheckBox2.Checked := StrToBool(Settings.ReadString('Settings', 'Use Pipes', '0'));
+      CheckBox3.Checked := StrToBool(Settings.ReadString('Settings', 'Topmost', ''));
+      CheckBox4.Checked := StrToBool(Settings.ReadString('Settings', 'Auto Clear Clipboard', ''));
+      CheckBox5.Checked := StrToBool(Settings.ReadString('Settings', 'Command Confirmation', ''));
+      CheckBox6.Checked := StrToBool(Settings.ReadString('Settings', 'Auto Save/Load Settings', ''));
+      Edit1.Text := Settings.ReadString('Settings', 'Prefix CMD', '');
+      Edit2.Text := Settings.ReadString('Settings', 'Suffix CMD', '');
+      WorkingDir := Settings.ReadString('Settings', 'Working Directory', ExtractFilePath(Application.ExeName));
+
+    finally
+
+      Settings.Free //Free Settings File
+
+    end;
+
+  end;
+
+  Form1.Caption := 'ClipeXec - ' + WorkingDir;  //Set Working Directory Name to Title
 
 end;
 
@@ -382,7 +463,7 @@ procedure TForm1.Timer1Timer(Sender: TObject);
 begin
 
   Label3.Caption := IntToStr(ListBox1.Items.Count);  //Show Number of ListBox Items
-  Label2.Caption := 'Currently Running: ' + IntToStr(RunningTasks);  //Display Number of currently running Tasks
+  Label2.Caption := 'Currently Running Tasks: ' + IntToStr(RunningTasks);  //Display Number of currently running Tasks
 
   if Clipboard.HasFormat(CF_TEXT) then begin  //Check if ClipBoard Contents are Text
 
@@ -408,12 +489,12 @@ begin
 
   if ToggleBox1.Checked then begin
 
-    ToggleBox1.Caption := 'Clear Clipboard and stop';
+    ToggleBox1.Caption := 'Stop';
 
   end
   else begin
 
-    ToggleBox1.Caption := 'Clear Clipboard and start';
+    ToggleBox1.Caption := 'Start';
     NewText := '';  //Reset Text Variable
 
   end;

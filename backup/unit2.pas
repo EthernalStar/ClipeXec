@@ -54,15 +54,21 @@ var
                     ' * Added horizontal ScrollBar for large commands.' + LineEnding +
                     ' * Added Copy Feature for single Clipboard Entries.' + LineEnding +
                     ' * Added CMD Display Option with Confirmation upon Execution.' + LineEnding +
-                    ' * Added Clipboard Clear Mode wich clears the Clipboard directly after Execution.' + LineEnding +
-                    ' * Added About Page to better display Developer and Application Information.' + LineEnding +
-                    ' * Added Running Tasks Display wich display the amount of still running Tasks.' + LineEnding +
+                    ' * Added Clear Option for Clipboard after Execution.' + LineEnding +
+                    ' * Added About Page to display additional Information.' + LineEnding +
+                    ' * Added Display for amount of still running Tasks.' + LineEnding +
                     ' * Added Confirmation Dialog for closing if Tasks are still running.' + LineEnding +
-                    ' * Added many visual Improvements to the GUI.';  //The String used for Displaying the latest Changelog
+                    ' * Added many visual Improvements to the GUI.' + LineEnding +
+                    'Version 1.0.2:' + LineEnding +
+                    ' * Added Feature to save Settings.' + LineEnding +
+                    ' * Added Display for Working Directory in Window Title.' + LineEnding +  
+                    ' * Changed GUI Layout.' + LineEnding +
+                    ' * Changed default Working Directory to Application Directory..' + LineEnding +
+                    ' * Minor Bug and Typo fixes.';  //The String used for Displaying the latest Changelog
   const REPO_CODEBERG = 'https://codeberg.org/EthernalStar/ClipeXec';  //Rpository Url for Codeberg
   const REPO_GITHUB = 'https://github.com/EthernalStar/ClipeXec';  //Rpository Url for Github
   const APP_TITLE = 'ClipeXec';  //Title of the Application
-  const APP_VERSION = '1.0.1';  //Version of the Application
+  const APP_VERSION = '1.0.2';  //Version of the Application
   const DEV_NAME = 'EthernalStar';  //Developer Name
   const DEV_EMAIL = 'NZSoft@Protonmail.com';  //Developer Email
 
