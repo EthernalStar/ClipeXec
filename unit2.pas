@@ -72,7 +72,7 @@ var
   const REPO_CODEBERG = 'https://codeberg.org/EthernalStar/ClipeXec';  //Rpository Url for Codeberg
   const REPO_GITHUB = 'https://github.com/EthernalStar/ClipeXec';  //Rpository Url for Github
   const APP_TITLE = 'ClipeXec';  //Title of the Application
-  const APP_VERSION = '1.0.3';  //Version of the Application
+  const APP_VERSION = '1.0.4';  //Version of the Application
   const DEV_NAME = 'EthernalStar';  //Developer Name
   const DEV_EMAIL = 'NZSoft@Protonmail.com';  //Developer Email
 
