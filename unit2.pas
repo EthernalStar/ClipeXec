@@ -66,7 +66,9 @@ var
                     ' * Changed default Working Directory to Application Directory.' + LineEnding +
                     ' * Minor Bug and Typo fixes.' + LineEnding +
                     'Version 1.0.3:' + LineEnding +
-                    ' * Minor Bug Fixes.';  //The String used for Displaying the latest Changelog
+                    ' * Minor Bug Fixes.' + LineEnding +
+                    'Version 1.0.4:' + LineEnding +
+                    ' * Fixed Typo.';  //The String used for Displaying the latest Changelog
   const REPO_CODEBERG = 'https://codeberg.org/EthernalStar/ClipeXec';  //Rpository Url for Codeberg
   const REPO_GITHUB = 'https://github.com/EthernalStar/ClipeXec';  //Rpository Url for Github
   const APP_TITLE = 'ClipeXec';  //Title of the Application
@@ -116,7 +118,7 @@ begin
   Image1.Hint := 'Visit ' + REPO_CODEBERG;  //Set Repo URL as Hint
   Image2.Hint := 'Visit ' + REPO_GITHUB;  //Set Repo URL as Hint
 
-  Label2.Caption := APP_TITLE + ' - Verison ' + APP_VERSION;  //Set App Title and Version
+  Label2.Caption := APP_TITLE + ' - Version ' + APP_VERSION;  //Set App Title and Version
   Label1.Caption := DEV_EMAIL;  //Set Developer EMail
   Label3.Caption := '©' + DEV_NAME;  //Set Developer Name
 
