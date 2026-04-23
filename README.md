@@ -1,5 +1,7 @@
 # ![Logo](./Icon.png?raw=true) ClipeXec
 
+## New contact E-Mail: StarstormSigma@protonmail.com
+
 **ClipeXec** is a Tool wich executes a given Command once the content of the Clipboard changes.
 
 It incorporates the Clipboard Text content directly to the Command.
@@ -64,7 +66,7 @@ There are 4 Symbols next to the ListBox on the right Side:
 
 By clicking the large Icon on the Left you will be introduced to the About Page where useful Information about the **License** or recent **Changelog** can be found.
 There are also links to my Repositories on [Github](https://github.com/EthernalStar) or [Codeberg](https://codeberg.org/EthernalStar) where you could always find the latest Version.
-If you have questions please don't hesitate to contact me over [E-Mail](mailto:NZSoft@Protonmail.com) or create an Issue on the Project Page.
+If you have questions please don't hesitate to contact me over [E-Mail](mailto:StarstormSigma@protonmail.com) or create an Issue on the Project Page.
 
 ## Use Cases
 
